@@ -20,12 +20,17 @@ import { Response } from 'express';
 import { responseGenerators } from 'src/lib/utils';
 import { IResponseGenerators } from 'src/lib/types';
 import { User } from './entities/user.entity';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
+  @ApiOperation({ summary: 'Create a new user' })
+  @ApiResponse({ status: 201, description: 'User created.' })
+  @ApiResponse({ status: 400, description: 'Bad request.' })
   async create(@Body() createUserDto: CreateUserDto, @Res() res: Response) {
     try {
       const createdUser = await this.usersService.create(createUserDto);
@@ -47,6 +52,8 @@ export class UsersController {
   }
 
   @Get()
+  @ApiOperation({ summary: 'Get all users' })
+  @ApiResponse({ status: 200, description: 'Return all users.' })
   async findAll(
     @Res() res: Response,
   ): Promise<Response<any, Record<string, IResponseGenerators<Users[]>>>> {
@@ -71,6 +78,9 @@ export class UsersController {
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Get user by ID' })
+  @ApiResponse({ status: 200, description: 'Return a single user.' })
+  @ApiResponse({ status: 404, description: 'User not found.' })
   async findOne(@Param('id') id: string, @Res() res: Response) {
     try {
       const user = await this.usersService.findOne(id);
@@ -92,6 +102,9 @@ export class UsersController {
   }
 
   @Put(':id')
+  @ApiOperation({ summary: 'Update an existing user' })
+  @ApiResponse({ status: 200, description: 'User updated.' })
+  @ApiResponse({ status: 404, description: 'User not found.' })
   async update(
     @Param('id') id: string,
     @Body() updateUserDto: UpdateUserDto,
@@ -118,6 +131,9 @@ export class UsersController {
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'Delete a user' })
+  @ApiResponse({ status: 200, description: 'User deleted.' })
+  @ApiResponse({ status: 404, description: 'User not found.' })
   async deleteUser(@Param('id') id: string, @Res() res: Response) {
     try {
       const deleteUser = await this.usersService.remove(id);
