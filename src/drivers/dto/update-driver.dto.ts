@@ -1,7 +1,8 @@
-// src/drivers/dto/update-driver.dto.ts
-
 import { IsOptional, IsString, IsArray } from 'class-validator';
+
 import { ApiProperty } from '@nestjs/swagger';
+
+// ------------------------------------------------------------------------------------
 
 export class UpdateDriverDto {
   @ApiProperty({

@@ -1,14 +1,14 @@
-// src/cars/dto/create-car.dto.ts
-
 import {
   IsString,
   IsNotEmpty,
   IsIn,
   IsNumber,
-  IsDate,
   IsOptional,
 } from 'class-validator';
+
 import { ApiProperty } from '@nestjs/swagger';
+
+// ------------------------------------------------------------------------------------
 
 export class CreateCarDto {
   @ApiProperty({

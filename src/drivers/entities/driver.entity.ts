@@ -1,8 +1,10 @@
-// src/drivers/driver.entity.ts
-
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+
 import { Document } from 'mongoose';
+
 import { getCurrentUnix } from 'src/lib/date-utils';
+
+// ------------------------------------------------------------------------------------
 
 @Schema()
 export class Driver extends Document {

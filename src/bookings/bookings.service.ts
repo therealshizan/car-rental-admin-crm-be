@@ -3,13 +3,22 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+
 import { InjectModel } from '@nestjs/mongoose';
+
 import { Model } from 'mongoose';
+
 import { Bookings } from './entities/booking.entity';
+
 import { CreateBookingDto } from './dto/create-booking.dto';
+
 import { UpdateBookingDto } from './dto/update-booking.dto';
+
 import { generateId } from 'src/common/generate-id';
+
 import { getCurrentUnix } from 'src/lib/date-utils';
+
+// ------------------------------------------------------------------------------------
 
 @Injectable()
 export class BookingsService {

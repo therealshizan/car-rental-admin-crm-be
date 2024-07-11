@@ -1,16 +1,22 @@
-// src/drivers/drivers.service.ts
-
 import {
   Injectable,
   NotFoundException,
   BadRequestException,
 } from '@nestjs/common';
+
 import { InjectModel } from '@nestjs/mongoose';
+
 import { Model } from 'mongoose';
+
 import { CreateDriverDto } from './dto/create-driver.dto';
+
 import { UpdateDriverDto } from './dto/update-driver.dto';
+
 import { Driver } from './entities/driver.entity';
+
 import { generateId } from 'src/common/generate-id';
+
+// ------------------------------------------------------------------------------------
 
 @Injectable()
 export class DriversService {

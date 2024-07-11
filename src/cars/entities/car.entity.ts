@@ -1,9 +1,12 @@
-// src/cars/car.entity.ts
-
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+
 import { Document } from 'mongoose';
 
+// ------------------------------------------------------------------------------------
+
 const carTypeValues = ['suv', 'luxury', 'sedan', 'minivan'];
+
+// ------------------------------------------------------------------------------------
 
 @Schema()
 export class Car extends Document {

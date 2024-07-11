@@ -2,6 +2,8 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 import { Document } from 'mongoose';
 
+// ------------------------------------------------------------------------------------
+
 @Schema()
 export class Bookings extends Document {
   @Prop()

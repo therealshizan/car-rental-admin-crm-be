@@ -3,13 +3,22 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+
 import { CreateCarDto } from './dto/create-car.dto';
-import { UpdateCarDto } from './dto/update-car.dto';
-import { Car, CarSchema } from './entities/car.entity';
+
+import { Car } from './entities/car.entity';
+
 import { InjectModel } from '@nestjs/mongoose';
+
 import { Model } from 'mongoose';
+
 import { generateId } from 'src/common/generate-id';
+
 import { getCurrentUnix } from 'src/lib/date-utils';
+
+import { UpdateCarDto } from './dto/update-car.dto';
+
+// ------------------------------------------------------------------------------------
 
 @Injectable()
 export class CarsService {
@@ -52,7 +61,7 @@ export class CarsService {
     }
   }
 
-  async update(carId: string, updateCarDto: CreateCarDto): Promise<Car> {
+  async update(carId: string, updateCarDto: UpdateCarDto): Promise<Car> {
     try {
       const existingCar = await this.carModel
         .findOneAndUpdate({ car_id: carId }, updateCarDto, { new: true })

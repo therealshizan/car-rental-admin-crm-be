@@ -1,5 +1,8 @@
 import { IsNotEmpty, IsString, IsArray, IsOptional } from 'class-validator';
+
 import { ApiProperty } from '@nestjs/swagger';
+
+// ------------------------------------------------------------------------------------
 
 export class CreateDriverDto {
   @ApiProperty({

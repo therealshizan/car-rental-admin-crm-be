@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+
 import {
   IsString,
   IsNumber,
@@ -9,6 +10,8 @@ import {
   Min,
   Max,
 } from 'class-validator';
+
+// ------------------------------------------------------------------------------------
 
 export class UpdateUserDto {
   @IsString()

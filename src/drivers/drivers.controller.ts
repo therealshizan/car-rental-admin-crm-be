@@ -9,11 +9,18 @@ import {
   NotFoundException,
   BadRequestException,
 } from '@nestjs/common';
+
 import { CreateDriverDto } from './dto/create-driver.dto';
+
 import { UpdateDriverDto } from './dto/update-driver.dto';
+
 import { DriversService } from './drivers.service';
+
 import { Driver } from './entities/driver.entity';
-import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger'; // Import decorators
+
+import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+
+// ------------------------------------------------------------------------------------
 
 @ApiTags('drivers')
 @Controller('drivers')
