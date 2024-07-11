@@ -125,6 +125,7 @@ export class CreateBookingDto {
   payment_mode: 'cash' | 'bank';
 
   @IsNumber()
+  @IsOptional()
   @ApiProperty({
     example: 1688497305,
     description: 'Unix timestamp when the booking was created',
