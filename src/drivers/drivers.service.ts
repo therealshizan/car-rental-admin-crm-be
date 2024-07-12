@@ -26,7 +26,7 @@ export class DriversService {
 
   async create(createDriverDto: CreateDriverDto): Promise<Driver> {
     try {
-      createDriverDto.driver_id = generateId('driver');
+      createDriverDto.id = generateId('driver');
       const createdDriver = new this.driverModel(createDriverDto);
       return await createdDriver.save();
     } catch (error) {
@@ -48,7 +48,7 @@ export class DriversService {
 
   async findOne(id: string): Promise<Driver> {
     try {
-      const driver = await this.driverModel.findOne({ driver_id: id }).exec();
+      const driver = await this.driverModel.findOne({ id }).exec();
       if (!driver) {
         throw new NotFoundException('Driver not found');
       }
@@ -66,7 +66,7 @@ export class DriversService {
   async update(id: string, updateDriverDto: UpdateDriverDto): Promise<Driver> {
     try {
       const updatedDriver = await this.driverModel
-        .findOneAndUpdate({ driver_id: id }, updateDriverDto, { new: true })
+        .findOneAndUpdate({ id }, updateDriverDto, { new: true })
         .exec();
       if (!updatedDriver) {
         throw new NotFoundException('Driver not found');
@@ -84,7 +84,7 @@ export class DriversService {
 
   async remove(id: string): Promise<{ message: string }> {
     try {
-      const result = await this.driverModel.deleteOne({ driver_id: id }).exec();
+      const result = await this.driverModel.deleteOne({ id }).exec();
       if (result.deletedCount === 0) {
         throw new NotFoundException('Driver not found');
       }

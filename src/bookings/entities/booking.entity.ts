@@ -7,7 +7,7 @@ import { Document } from 'mongoose';
 @Schema()
 export class Bookings extends Document {
   @Prop({ required: false })
-  booking_id?: string;
+  id?: string;
 
   @Prop({ required: true })
   full_name: string;

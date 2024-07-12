@@ -11,7 +11,7 @@ const carTypeValues = ['suv', 'luxury', 'sedan', 'minivan'];
 @Schema()
 export class Car extends Document {
   @Prop({ required: false })
-  car_id?: string;
+  id?: string;
 
   @Prop({ required: true })
   car_name: string;

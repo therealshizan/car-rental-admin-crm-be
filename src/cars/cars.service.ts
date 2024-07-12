@@ -26,9 +26,9 @@ export class CarsService {
 
   async create(createCarDto: CreateCarDto): Promise<Car> {
     try {
-      createCarDto.car_id = generateId('car');
+      createCarDto.id = generateId('car');
       createCarDto.created_at = getCurrentUnix();
-      if (createCarDto.car_id && createCarDto.created_at) {
+      if (createCarDto.id && createCarDto.created_at) {
         const createdCar = new this.carModel(createCarDto);
         return await createdCar.save();
       }
@@ -48,7 +48,7 @@ export class CarsService {
 
   async findOne(id: string): Promise<Car> {
     try {
-      const car = await this.carModel.findOne({ car_id: id }).exec();
+      const car = await this.carModel.findOne({ id }).exec();
       if (!car) {
         throw new NotFoundException('Car not found');
       }
@@ -64,7 +64,7 @@ export class CarsService {
   async update(carId: string, updateCarDto: UpdateCarDto): Promise<Car> {
     try {
       const existingCar = await this.carModel
-        .findOneAndUpdate({ car_id: carId }, updateCarDto, { new: true })
+        .findOneAndUpdate({ id: carId }, updateCarDto, { new: true })
         .exec();
       if (!existingCar) {
         throw new NotFoundException('Car not found');
@@ -80,7 +80,7 @@ export class CarsService {
 
   async remove(id: string): Promise<{ message: string }> {
     try {
-      const result = await this.carModel.deleteOne({ car_id: id }).exec();
+      const result = await this.carModel.deleteOne({ id }).exec();
       if (result.deletedCount === 0) {
         throw new NotFoundException('Car not found');
       }

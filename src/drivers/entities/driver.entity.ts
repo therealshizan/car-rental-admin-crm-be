@@ -9,7 +9,7 @@ import { getCurrentUnix } from 'src/lib/date-utils';
 @Schema()
 export class Driver extends Document {
   @Prop()
-  driver_id?: string;
+  id?: string;
 
   @Prop({ required: true })
   driver_name: string;

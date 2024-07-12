@@ -28,7 +28,7 @@ export class BookingsService {
 
   async create(createBookingDto: CreateBookingDto): Promise<Bookings> {
     try {
-      createBookingDto.booking_id = generateId('booking');
+      createBookingDto.id = generateId('booking');
       createBookingDto.created_at = getCurrentUnix();
       const createdBooking = new this.bookingsModel(createBookingDto);
       return createdBooking.save();
@@ -47,9 +47,7 @@ export class BookingsService {
 
   async findOne(id: string): Promise<Bookings> {
     try {
-      const booking = await this.bookingsModel
-        .findOne({ booking_id: id })
-        .exec();
+      const booking = await this.bookingsModel.findOne({ id }).exec();
       if (!booking) {
         throw new NotFoundException('Booking not found');
       }
@@ -67,13 +65,11 @@ export class BookingsService {
     updateBookingDto: UpdateBookingDto,
   ): Promise<Bookings> {
     try {
-      if (updateBookingDto.booking_id || updateBookingDto.created_at) {
-        throw new BadRequestException(
-          "You can't edit booking_id and created_at",
-        );
+      if (updateBookingDto.id || updateBookingDto.created_at) {
+        throw new BadRequestException("You can't edit id and created_at");
       }
       const updatedBooking = await this.bookingsModel
-        .findOneAndUpdate({ booking_id: id }, updateBookingDto, { new: true })
+        .findOneAndUpdate({ id }, updateBookingDto, { new: true })
         .exec();
       if (!updatedBooking) {
         throw new NotFoundException('Booking not found');
@@ -92,9 +88,7 @@ export class BookingsService {
 
   async remove(id: string): Promise<{ message: string }> {
     try {
-      const result = await this.bookingsModel
-        .deleteOne({ booking_id: id })
-        .exec();
+      const result = await this.bookingsModel.deleteOne({ id }).exec();
       if (result.deletedCount === 0) {
         throw new NotFoundException('Booking not found');
       }

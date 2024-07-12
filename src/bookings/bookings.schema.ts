@@ -7,7 +7,7 @@ import { Document } from 'mongoose';
 @Schema()
 export class Bookings extends Document {
   @Prop()
-  booking_id?: string;
+  id?: string;
 
   @Prop()
   full_name: string;
@@ -17,9 +17,6 @@ export class Bookings extends Document {
 
   @Prop()
   is_booking_local: boolean;
-
-  @Prop()
-  car_id: string;
 
   @Prop()
   pickup_location: string;

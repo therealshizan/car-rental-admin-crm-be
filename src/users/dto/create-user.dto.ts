@@ -16,7 +16,7 @@ import {
 export class CreateUserDto {
   @IsString()
   @IsOptional()
-  user_id?: string;
+  id?: string;
 
   @IsString()
   @Length(4, 20)

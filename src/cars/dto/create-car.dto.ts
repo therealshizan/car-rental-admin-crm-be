@@ -17,7 +17,7 @@ export class CreateCarDto {
   })
   @IsString()
   @IsOptional()
-  car_id?: string;
+  id?: string;
 
   @ApiProperty({
     example: 'Tesla Model S',

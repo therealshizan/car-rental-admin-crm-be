@@ -12,7 +12,7 @@ export class CreateDriverDto {
   })
   @IsOptional()
   @IsString()
-  driver_id?: string;
+  id?: string;
 
   @ApiProperty({
     example: 'John Doe',

@@ -18,7 +18,7 @@ export class CreateBookingDto {
     example: 'abc123',
     description: 'Unique identifier for the booking (optional)',
   })
-  booking_id?: string;
+  id?: string;
 
   @IsString()
   @IsNotEmpty()
