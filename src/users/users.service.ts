@@ -3,12 +3,20 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+
 import { CreateUserDto } from './dto/create-user.dto';
+
 import { UpdateUserDto } from './dto/update-user.dto';
+
 import { Users } from './users.schema';
+
 import { InjectModel } from '@nestjs/mongoose';
+
 import { Model } from 'mongoose';
+
 import { generateId } from 'src/common/generate-id';
+
+// ------------------------------------------------------------------------------------
 
 @Injectable()
 export class UsersService {
@@ -16,8 +24,7 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto) {
     const { username, email, phone } = createUserDto;
-    createUserDto.user_id = generateId('user');
-
+    createUserDto.id = generateId('user');
 
     const existingUser = await this.usersModel.findOne({
       $or: [{ username }, { email }, { phone }],
@@ -41,37 +48,35 @@ export class UsersService {
   }
 
   async findOne(id: string) {
-    const user = await this.usersModel.findOne({ user_id: id });
+    const user = await this.usersModel.findOne({ id });
 
     if (user) {
-      return this.usersModel.findOne({ user_id: id });
+      return this.usersModel.findOne({ id });
     } else {
       throw new BadRequestException('User Not Found');
     }
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
-    const user = await this.usersModel.findOne({ user_id: id });
+    const user = await this.usersModel.findOne({ id });
     if (!user) {
       throw new BadRequestException('User Not Found');
     }
 
-    // Update user details
     Object.assign(user, updateUserDto);
 
-    // Save updated user
     await user.save();
 
     return user;
   }
 
   async remove(id: string): Promise<{ message: string }> {
-    const user = await this.usersModel.findOne({ user_id: id });
+    const user = await this.usersModel.findOne({ id });
     if (!user) {
       throw new NotFoundException('User Not Found');
     }
 
-    await this.usersModel.deleteOne({ user_id: id });
+    await this.usersModel.deleteOne({ id: id });
     return { message: `User ${user.username} has been deleted` };
   }
 }

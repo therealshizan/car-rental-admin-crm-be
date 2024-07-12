@@ -1,12 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+
 import { Document } from 'mongoose';
 
-const bookingTypeValues = ['one way', 'outstation', 'local'];
+// ------------------------------------------------------------------------------------
 
 @Schema()
 export class Bookings extends Document {
   @Prop({ required: false })
-  booking_id?: string;
+  id?: string;
 
   @Prop({ required: true })
   full_name: string;
@@ -14,9 +15,9 @@ export class Bookings extends Document {
   @Prop({
     required: true,
     enum: ['one way', 'outstation', 'local'],
-    messsage: (props: any)=> {
-        'helloooo'
-    }
+    messsage: (props: any) => {
+      'helloooo';
+    },
   })
   booking_type: 'one way' | 'outstation' | 'local';
 

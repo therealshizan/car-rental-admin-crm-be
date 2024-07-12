@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+
 import {
   IsString,
   IsBoolean,
@@ -8,6 +9,8 @@ import {
   IsOptional,
 } from 'class-validator';
 
+// ------------------------------------------------------------------------------------
+
 export class CreateBookingDto {
   @IsString()
   @IsOptional()
@@ -15,7 +18,7 @@ export class CreateBookingDto {
     example: 'abc123',
     description: 'Unique identifier for the booking (optional)',
   })
-  booking_id?: string;
+  id?: string;
 
   @IsString()
   @IsNotEmpty()
@@ -125,6 +128,7 @@ export class CreateBookingDto {
   payment_mode: 'cash' | 'bank';
 
   @IsNumber()
+  @IsOptional()
   @ApiProperty({
     example: 1688497305,
     description: 'Unix timestamp when the booking was created',
