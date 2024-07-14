@@ -112,6 +112,30 @@ export class UsersController {
     }
   }
 
+  @Get('find-with-username/:username')
+  @ApiOperation({ summary: 'Get user by Username' })
+  @ApiResponse({ status: 200, description: 'Return a single user.' })
+  @ApiResponse({ status: 404, description: 'User not found.' })
+  async findWithUsername(@Param('username') username: string, @Res() res: Response) {
+    try {
+      const user = await this.usersService.findWithUsername(username);
+
+      const response: IResponseGenerators<User> = {
+        data: user,
+        status_code: HttpStatus.OK,
+        status_message: 'User Found Successfully',
+        response_error: false,
+      };
+
+      return res.status(HttpStatus.OK).send(response);
+    } catch (error) {
+      if (error instanceof BadRequestException) {
+        throw new BadRequestException(error.message);
+      }
+      throw new InternalServerErrorException('An unexpected error occurred');
+    }
+  }
+
   @Put(':id')
   @ApiOperation({ summary: 'Update an existing user' })
   @ApiResponse({ status: 200, description: 'User updated.' })
