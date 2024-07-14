@@ -15,9 +15,6 @@ export class Bookings extends Document {
   @Prop({
     required: true,
     enum: ['one way', 'outstation', 'local'],
-    messsage: (props: any) => {
-      'helloooo';
-    },
   })
   booking_type: 'one way' | 'outstation' | 'local';
 
