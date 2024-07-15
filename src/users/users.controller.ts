@@ -11,6 +11,7 @@ import {
   HttpStatus,
   Res,
   NotFoundException,
+  UseGuards,
 } from '@nestjs/common';
 
 import { UsersService } from './users.service';

@@ -15,6 +15,7 @@ import { CarsModule } from './cars/cars.module';
 import { DriversModule } from './drivers/drivers.module';
 
 import { BillsModule } from './bills/bills.module';
+import { AuthModule } from './auth/auth.module';
 
 // -------------------------------------------------------------------------
 
@@ -26,6 +27,7 @@ import { BillsModule } from './bills/bills.module';
     CarsModule,
     DriversModule,
     BillsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
