@@ -16,12 +16,14 @@ import { DriversModule } from './drivers/drivers.module';
 
 import { BillsModule } from './bills/bills.module';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 // -------------------------------------------------------------------------
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/car-rental-admin'),
+    ConfigModule.forRoot({ isGlobal: true }),
+    MongooseModule.forRoot(process.env.MONGODB_URI),
     UsersModule,
     BookingsModule,
     CarsModule,
