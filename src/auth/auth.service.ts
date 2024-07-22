@@ -8,6 +8,7 @@ export class AuthService {
     private usersService: UsersService,
     private jwtService: JwtService,
   ) {}
+  private blacklistedTokens: Set<string> = new Set();
 
   async signIn(username: string, pass: string) {
     const user = await this.usersService.findByUsername(username);
@@ -20,5 +21,13 @@ export class AuthService {
       username: user.username,
       access_token: await this.jwtService.signAsync(payload),
     };
+  }
+
+  addToken(token: string) {
+    this.blacklistedTokens.add(token);
+  }
+
+  isTokenBlacklisted(token: string): boolean {
+    return this.blacklistedTokens.has(token);
   }
 }
