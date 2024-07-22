@@ -1,0 +1,12 @@
+POST http://localhost:3000/api/auth/login
+content-type: application/json
+
+{
+    "username": "shizanshaikh",
+    "password": "9833118167"
+}
+
+###
+
+GET http://localhost:3000/api/auth/me
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyX2ZiNTdmZTE0NjBkMzQyMjFiNTU3MjVmMmE2N2I1NTM2IiwidXNlcm5hbWUiOiJzaGl6YW5zaGFpa2giLCJpYXQiOjE3MjA5NjQ5MzYsImV4cCI6MTcyMDk2ODUzNn0.LmbyJvv8UNlaK59ft16HKPntwig2W0s84R75mEIGYis
