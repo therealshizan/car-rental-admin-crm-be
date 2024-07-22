@@ -57,6 +57,16 @@ export class UsersService {
     }
   }
 
+  async findByUsername(username: string) {
+    const user = await this.usersModel.findOne({ username });
+
+    if (user) {
+      return this.usersModel.findOne({ username });
+    } else {
+      throw new BadRequestException('User Not Found');
+    }
+  }
+
   async update(id: string, updateUserDto: UpdateUserDto) {
     const user = await this.usersModel.findOne({ id });
     if (!user) {
