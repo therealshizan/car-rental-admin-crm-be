@@ -58,7 +58,9 @@ export class UsersService {
   }
 
   async findByUsername(username: string) {
-    const user = await this.usersModel.findOne({ username });
+    const user = await this.usersModel.find();
+
+    console.log(user)
 
     if (user) {
       return this.usersModel.findOne({ username });

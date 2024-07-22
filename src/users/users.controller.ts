@@ -31,6 +31,7 @@ import { IResponseGenerators } from 'src/lib/types';
 import { User } from './entities/user.entity';
 
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Public } from 'src/auth/public-strategy';
 
 // ------------------------------------------------------------------------------------
 
@@ -39,6 +40,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Public()
   @Post()
   @ApiOperation({ summary: 'Create a new user' })
   @ApiResponse({ status: 201, description: 'User created.' })
@@ -117,7 +119,10 @@ export class UsersController {
   @ApiOperation({ summary: 'Get user by Username' })
   @ApiResponse({ status: 200, description: 'Return a single user.' })
   @ApiResponse({ status: 404, description: 'User not found.' })
-  async findWithUsername(@Param('username') username: string, @Res() res: Response) {
+  async findWithUsername(
+    @Param('username') username: string,
+    @Res() res: Response,
+  ) {
     try {
       const user = await this.usersService.findByUsername(username);
 

@@ -28,6 +28,7 @@ export class AuthController {
   @Post('login')
   @ApiOperation({ summary: 'User Login' })
   signIn(@Body() signInDto: signInDto) {
+    console.log('signInDto ', signInDto)
     return this.authService.signIn(signInDto.username, signInDto.password);
   }
 
