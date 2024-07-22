@@ -119,7 +119,7 @@ export class UsersController {
   @ApiResponse({ status: 404, description: 'User not found.' })
   async findWithUsername(@Param('username') username: string, @Res() res: Response) {
     try {
-      const user = await this.usersService.findWithUsername(username);
+      const user = await this.usersService.findByUsername(username);
 
       const response: IResponseGenerators<User> = {
         data: user,
